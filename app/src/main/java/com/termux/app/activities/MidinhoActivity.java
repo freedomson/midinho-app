@@ -42,22 +42,21 @@ public final class MidinhoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         AppCompatActivityUtils.setNightMode(this, NightMode.getAppNightMode().getName(), true);
         setContentView(R.layout.activity_midinho);
-
+        // WebView.setWebContentsDebuggingEnabled(true);
         FrameLayout container = findViewById(R.id.webViewContainer);
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
         // If WebView doesn't exist, create and configure it
         if (WebViewHolder.midinhoWebView == null) {
-            WebView webView = new WebView(getApplicationContext());
+            WebView webView = new WebView(this);
 
             WebSettings settings = webView.getSettings();
             settings.setJavaScriptEnabled(true);
-            settings.setDomStorageEnabled(true);
-            webView.setWebChromeClient(new WebChromeClient());
-            settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
             webView.setVerticalScrollBarEnabled(true);
             webView.setHorizontalScrollBarEnabled(true);
+            webView.setFocusable(true);
+            webView.setFocusableInTouchMode(true);
             webView.loadUrl(TermuxConstants.TERMUX_MIDINHO_URL);
             WebViewHolder.midinhoWebView = webView;
         }
