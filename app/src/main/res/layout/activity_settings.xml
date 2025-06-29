@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!--MIDINHO
     <include
         layout="@layout/partial_primary_toolbar"
         android:id="@+id/partial_primary_toolbar"/>
@@ -12,5 +13,16 @@
         android:id="@+id/settings"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+         -->
+
+    <FrameLayout
+        android:id="@+id/settings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
 
 </LinearLayout>

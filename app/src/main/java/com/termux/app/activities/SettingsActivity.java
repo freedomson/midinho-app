@@ -3,6 +3,8 @@ package com.termux.app.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
+// MIDINHO add webview
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,17 +35,24 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         AppCompatActivityUtils.setNightMode(this, NightMode.getAppNightMode().getName(), true);
+        // MIDINHO comment
+        // setContentView(R.layout.activity_settings);
+        // if (savedInstanceState == null) {
+        //     getSupportFragmentManager()
+        //         .beginTransaction()
+        //         .replace(R.id.settings, new RootPreferencesFragment())
+        //         .commit();
+        // }
 
-        setContentView(R.layout.activity_settings);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.settings, new RootPreferencesFragment())
-                .commit();
-        }
+        // AppCompatActivityUtils.setToolbar(this, com.termux.shared.R.id.toolbar);
+        // AppCompatActivityUtils.setShowBackButtonInActionBar(this, true);
 
-        AppCompatActivityUtils.setToolbar(this, com.termux.shared.R.id.toolbar);
-        AppCompatActivityUtils.setShowBackButtonInActionBar(this, true);
+        // MIDINHO add webview
+        WebView webView = findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setVerticalScrollBarEnabled(true);
+        webView.setHorizontalScrollBarEnabled(true);// Optional
+        webView.loadUrl("http://127.0.0.1:8080/");
     }
 
     @Override
@@ -63,12 +72,13 @@ public class SettingsActivity extends AppCompatActivity {
             new Thread() {
                 @Override
                 public void run() {
-                    configureTermuxAPIPreference(context);
-                    configureTermuxFloatPreference(context);
-                    configureTermuxTaskerPreference(context);
-                    configureTermuxWidgetPreference(context);
-                    configureAboutPreference(context);
-                    configureDonatePreference(context);
+                    // MIDINHO comment
+                    // configureTermuxAPIPreference(context);
+                    // configureTermuxFloatPreference(context);
+                    // configureTermuxTaskerPreference(context);
+                    // configureTermuxWidgetPreference(context);
+                    // configureAboutPreference(context);
+                    // configureDonatePreference(context);
                 }
             }.start();
         }

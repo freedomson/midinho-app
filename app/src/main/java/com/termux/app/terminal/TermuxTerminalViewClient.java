@@ -52,6 +52,12 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.drawerlayout.widget.DrawerLayout;
+// MIDINHO import
+import android.content.Intent;
+import com.termux.app.activities.SettingsActivity;
+import com.termux.shared.activity.ActivityUtils;
+import java.util.concurrent.CompletableFuture;
+import com.termux.app.activities.SettingsActivity;
 
 public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
 
@@ -165,6 +171,17 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
             // double back press. Check TerminalView.setTerminalCursorBlinkerState().
             setTerminalCursorBlinkerState(true);
             mTerminalCursorBlinkerStateAlreadySet = true;
+            // MIDINHO add CompletableFuture
+            CompletableFuture.runAsync(() -> {
+                System.out.println("Async task running in: " + Thread.currentThread().getName());
+                try {
+                    Thread.sleep(1500); // Simulate delay
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Async task finished");
+                ActivityUtils.startActivity(mActivity, new Intent(mActivity, SettingsActivity.class));
+            });
         }
     }
 

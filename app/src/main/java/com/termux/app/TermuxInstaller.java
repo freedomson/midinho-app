@@ -32,6 +32,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+// MIDINHO add imports
+import com.termux.app.activities.SettingsActivity;
+import com.termux.shared.activity.ActivityUtils;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import android.content.Intent;
+import android.system.ErrnoException;
 
 import static com.termux.shared.termux.TermuxConstants.TERMUX_PREFIX_DIR;
 import static com.termux.shared.termux.TermuxConstants.TERMUX_PREFIX_DIR_PATH;
@@ -156,8 +164,11 @@ final class TermuxInstaller {
                     final byte[] buffer = new byte[8096];
                     final List<Pair<String, String>> symlinks = new ArrayList<>(50);
 
-                    final byte[] zipBytes = loadZipBytes();
-                    try (ZipInputStream zipInput = new ZipInputStream(new ByteArrayInputStream(zipBytes))) {
+                    // MIDINHO remove
+                    // final byte[] zipBytes = loadZipBytes();
+                    // try (ZipInputStream zipInput = new ZipInputStream(new ByteArrayInputStream(zipBytes))) {
+                    InputStream inputStream = activity.getApplicationContext().getAssets().open("bootstrap-aarch64.zip");
+                    try (ZipInputStream zipInput = new ZipInputStream(inputStream)) {
                         ZipEntry zipEntry;
                         while ((zipEntry = zipInput.getNextEntry()) != null) {
                             if (zipEntry.getName().equals("SYMLINKS.txt")) {
@@ -207,7 +218,12 @@ final class TermuxInstaller {
                     if (symlinks.isEmpty())
                         throw new RuntimeException("No SYMLINKS.txt encountered");
                     for (Pair<String, String> symlink : symlinks) {
+                        // MIDINHO add try
+                        try {
                         Os.symlink(symlink.first, symlink.second);
+                        } catch (ErrnoException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     Logger.logInfo(LOG_TAG, "Moving termux prefix staging to prefix directory.");
@@ -380,7 +396,7 @@ final class TermuxInstaller {
         System.loadLibrary("termux-bootstrap");
         return getZip();
     }
-
-    public static native byte[] getZip();
+    // MIDINHO add
+    public static native void writeZipToFile(String path);
 
 }
