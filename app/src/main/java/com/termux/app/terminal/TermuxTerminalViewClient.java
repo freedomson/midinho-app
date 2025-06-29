@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.termux.R;
 import com.termux.app.TermuxActivity;
+import com.termux.app.activities.MidinhoActivity;
 import com.termux.shared.file.FileUtils;
 import com.termux.shared.interact.MessageDialogUtils;
 import com.termux.shared.interact.ShareUtils;
@@ -78,6 +79,7 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
     private List<KeyboardShortcut> mSessionShortcuts;
 
     private static final String LOG_TAG = "TermuxTerminalViewClient";
+    private Intent intent;
 
     public TermuxTerminalViewClient(TermuxActivity activity, TermuxTerminalSessionActivityClient termuxTerminalSessionActivityClient) {
         this.mActivity = activity;
@@ -91,11 +93,12 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
     /**
      * Should be called when mActivity.onCreate() is called
      */
-    public void onCreate() {
+    public void onCreate(Intent intent) {
         onReloadProperties();
-
+        this.intent = intent;
         mActivity.getTerminalView().setTextSize(mActivity.getPreferences().getFontSize());
         mActivity.getTerminalView().setKeepScreenOn(mActivity.getPreferences().shouldKeepScreenOn());
+
     }
 
     /**
@@ -128,6 +131,7 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
             // TermuxActivity is started after device display timeout with double tap and not power button.
             setTerminalCursorBlinkerState(true);
             mTerminalCursorBlinkerStateAlreadySet = true;
+            this.openMidinho();
         }
     }
 
@@ -155,6 +159,23 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
 
         // Start terminal cursor blinking if enabled
         setTerminalCursorBlinkerState(true);
+        this.openMidinho();
+    }
+
+    /**
+     * Open Midinho webview
+     */
+    public void openMidinho() {
+        // MIDINHO add CompletableFuture
+        CompletableFuture.runAsync(() -> {
+            System.out.println("Async task running in: " + Thread.currentThread().getName());
+            try {
+                Thread.sleep(0); // Simulate delay
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            mActivity.startActivity(this.intent);
+        });
     }
 
     /**
@@ -171,17 +192,7 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
             // double back press. Check TerminalView.setTerminalCursorBlinkerState().
             setTerminalCursorBlinkerState(true);
             mTerminalCursorBlinkerStateAlreadySet = true;
-            // MIDINHO add CompletableFuture
-            CompletableFuture.runAsync(() -> {
-                System.out.println("Async task running in: " + Thread.currentThread().getName());
-                try {
-                    Thread.sleep(1500); // Simulate delay
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("Async task finished");
-                ActivityUtils.startActivity(mActivity, new Intent(mActivity, SettingsActivity.class));
-            });
+            this.openMidinho();
         }
     }
 

@@ -391,11 +391,11 @@ final class TermuxInstaller {
         return FileUtils.createDirectoryFile(directory.getAbsolutePath());
     }
 
-    public static byte[] loadZipBytes() {
-        // Only load the shared library when necessary to save memory usage.
-        System.loadLibrary("termux-bootstrap");
-        return getZip();
-    }
+//    public static byte[] loadZipBytes() {
+//        // Only load the shared library when necessary to save memory usage.
+//        System.loadLibrary("termux-bootstrap");
+//        return getZip();
+//    }
     // MIDINHO add
     public static native void writeZipToFile(String path);
 

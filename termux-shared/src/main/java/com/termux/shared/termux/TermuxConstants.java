@@ -544,6 +544,9 @@ public final class TermuxConstants {
     /** Termux Wiki url */
     public static final String TERMUX_WIKI_URL = "https://wiki.termux.com"; // Default: "https://wiki.termux.com"
 
+    /** Midinho Wiki url */
+    public static final String TERMUX_MIDINHO_URL = "http://localhost:8080"; // Default: "http://localhost:8080"
+
     /** Termux GitHub wiki repo url */
     public static final String TERMUX_GITHUB_WIKI_REPO_URL = TERMUX_GITHUB_REPO_URL + "/wiki"; // Default: "https://github.com/termux/termux-app/wiki"
 
