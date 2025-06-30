@@ -245,7 +245,7 @@ public final class TermuxActivity extends AppCompatActivity implements ServiceCo
         }
 
         this.intent = new Intent(this, MidinhoActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        this.intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
         setTermuxTerminalViewAndClients();
 

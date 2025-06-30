@@ -131,7 +131,7 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
             // TermuxActivity is started after device display timeout with double tap and not power button.
             setTerminalCursorBlinkerState(true);
             mTerminalCursorBlinkerStateAlreadySet = true;
-            this.openMidinho();
+            // this.openMidinho();
         }
     }
 
@@ -170,7 +170,7 @@ public class TermuxTerminalViewClient extends TermuxTerminalViewClientBase {
         CompletableFuture.runAsync(() -> {
             System.out.println("Async task running in: " + Thread.currentThread().getName());
             try {
-                Thread.sleep(0); // Simulate delay
+                Thread.sleep(100); // Simulate delay
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

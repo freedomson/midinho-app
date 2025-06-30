@@ -46,4 +46,10 @@
         app:persistent="false"
         app:isPreferenceVisible="false"/>
 
+    <Preference
+        app:key="midinho"
+        app:title="@string/midinho_preference_title"
+        app:persistent="false"
+        app:isPreferenceVisible="false"/>
+
 </PreferenceScreen>

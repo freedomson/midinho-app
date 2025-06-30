@@ -1,6 +1,7 @@
 package com.termux.app.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 
@@ -54,6 +55,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public static class RootPreferencesFragment extends PreferenceFragmentCompat {
+        private Intent intent;
+
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             Context context = getContext();
@@ -70,6 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
                      configureTermuxWidgetPreference(context);
                      configureAboutPreference(context);
                      configureDonatePreference(context);
+                     configureMidinhoPreference(context);
                 }
             }.start();
         }
@@ -164,6 +168,16 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
                 });
             }
+        }
+        private void configureMidinhoPreference(@NonNull Context context) {
+            Preference donatePreference = findPreference("midinho");
+            donatePreference.setVisible(true);
+            this.intent = new Intent(context, MidinhoActivity.class);
+            this.intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            donatePreference.setOnPreferenceClickListener(preference -> {
+                context.startActivity(this.intent);
+                return true;
+            });
         }
     }
 

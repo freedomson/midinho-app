@@ -235,4 +235,7 @@
     <!-- Donate Preference -->
     <string name="donate_preference_title">Donate</string>
 
+    <!-- Midinho Preference -->
+    <string name="midinho_preference_title">Midinho</string>
+
 </resources>
