@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.termux"
+    package="com.lisbongames"
     android:installLocation="internalOnly"
     android:sharedUserId="${TERMUX_PACKAGE_NAME}"
     android:sharedUserLabel="@string/shared_user_label">
@@ -41,7 +41,7 @@
     <!-- MIDINHO add usesCleartextTraffic-->
     <application
         android:usesCleartextTraffic="true"
-        android:name=".app.TermuxApplication"
+        android:name="com.lisbongames.app.TermuxApplication"
         android:allowBackup="false"
         android:banner="@drawable/banner"
         android:extractNativeLibs="true"
@@ -54,7 +54,7 @@
         tools:targetApi="m">
 
         <activity
-            android:name=".app.TermuxActivity"
+            android:name="com.lisbongames.app.TermuxActivity"
             android:exported="true"
             android:configChanges="orientation|screenSize|smallestScreenSize|density|screenLayout|keyboard|keyboardHidden|navigation"
             android:label="@string/application_name"
@@ -81,7 +81,7 @@
         <activity-alias
             android:name=".HomeActivity"
             android:exported="true"
-            android:targetActivity=".app.TermuxActivity">
+            android:targetActivity="com.lisbongames.app.TermuxActivity">
 
             <!-- Launch activity automatically on boot on Android Things devices -->
             <intent-filter>
@@ -93,35 +93,35 @@
         </activity-alias>
 
         <activity
-            android:name=".app.activities.HelpActivity"
+            android:name="com.lisbongames.app.activities.HelpActivity"
             android:exported="false"
             android:label="@string/application_name"
-            android:parentActivityName=".app.TermuxActivity"
+            android:parentActivityName="com.lisbongames.app.TermuxActivity"
             android:resizeableActivity="true"
             tools:targetApi="n" />
 
         <activity
-            android:name=".app.activities.MidinhoActivity"
+            android:name="com.lisbongames.app.activities.MidinhoActivity"
             android:launchMode="singleTask"
             android:exported="false"
             android:label="@string/application_name"
-            android:parentActivityName=".app.TermuxActivity"
+            android:parentActivityName="com.lisbongames.app.TermuxActivity"
             android:resizeableActivity="true"
             tools:targetApi="n" />
 
         <activity
-            android:name=".app.activities.SettingsActivity"
+            android:name="com.lisbongames.app.activities.SettingsActivity"
             android:exported="true"
             android:label="@string/title_activity_termux_settings"
             android:theme="@style/Theme.TermuxApp.DayNight.NoActionBar" />
 
         <activity
-            android:name=".shared.activities.ReportActivity"
+            android:name="com.lisbongames.shared.activities.ReportActivity"
             android:theme="@style/Theme.MarkdownViewActivity.DayNight"
             android:documentLaunchMode="intoExisting" />
 
         <activity
-            android:name=".app.api.file.FileReceiverActivity"
+            android:name="com.lisbongames.app.api.file.FileReceiverActivity"
             android:excludeFromRecents="true"
             android:exported="false"
             android:noHistory="true"
@@ -133,7 +133,7 @@
         <activity-alias
             android:name=".app.api.file.FileShareReceiverActivity"
             android:exported="true"
-            android:targetActivity=".app.api.file.FileReceiverActivity">
+            android:targetActivity="com.lisbongames.app.api.file.FileReceiverActivity">
 
             <!-- Accept multiple file types when sending. -->
             <intent-filter>
@@ -154,7 +154,7 @@
         <activity-alias
             android:name=".app.api.file.FileViewReceiverActivity"
             android:exported="true"
-            android:targetActivity=".app.api.file.FileReceiverActivity">
+            android:targetActivity="com.lisbongames.app.api.file.FileReceiverActivity">
 
             <!-- Accept multiple file types to let Termux be usable as generic file viewer. -->
             <intent-filter tools:ignore="AppLinkUrlError">
@@ -171,7 +171,7 @@
         </activity-alias>
 
         <provider
-            android:name=".filepicker.TermuxDocumentsProvider"
+            android:name="com.lisbongames.filepicker.TermuxDocumentsProvider"
             android:authorities="${TERMUX_PACKAGE_NAME}.documents"
             android:exported="true"
             android:grantUriPermissions="true"
@@ -182,7 +182,7 @@
         </provider>
 
         <provider
-            android:name=".app.TermuxOpenReceiver$ContentProvider"
+            android:name="com.lisbongames.app.TermuxOpenReceiver$ContentProvider"
             android:authorities="${TERMUX_PACKAGE_NAME}.files"
             android:exported="true"
             android:grantUriPermissions="true"
@@ -190,11 +190,11 @@
 
 
         <receiver
-            android:name=".app.TermuxOpenReceiver"
+            android:name="com.lisbongames.app.TermuxOpenReceiver"
             android:exported="false" />
 
         <receiver
-            android:name=".app.event.SystemEventReceiver"
+            android:name="com.lisbongames.app.event.SystemEventReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -202,16 +202,16 @@
         </receiver>
 
         <receiver
-            android:name=".shared.activities.ReportActivity$ReportActivityBroadcastReceiver"
+            android:name="com.lisbongames.shared.activities.ReportActivity$ReportActivityBroadcastReceiver"
             android:exported="false" />
 
 
         <service
-            android:name=".app.TermuxService"
+            android:name="com.lisbongames.app.TermuxService"
             android:exported="false" />
 
         <service
-            android:name=".app.RunCommandService"
+            android:name="com.lisbongames.app.RunCommandService"
             android:exported="true"
             android:permission="${TERMUX_PACKAGE_NAME}.permission.RUN_COMMAND">
             <intent-filter>

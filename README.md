@@ -7,7 +7,7 @@
 [![Termux library releases at Jitpack](https://jitpack.io/v/termux/termux-app.svg)](https://jitpack.io/#termux/termux-app)
 
 
-[Termux](https://termux.com) is an Android terminal application and Linux environment.
+[Termux](https://lisbongames.com) is an Android terminal application and Linux environment.
 
 Note that this repository is for the app itself (the user interface and the terminal emulation). For the packages installable inside the app, see [termux/termux-packages](https://github.com/termux/termux-packages).
 
@@ -57,19 +57,19 @@ Termux can be obtained through various sources listed below for **only** Android
 
 Support for both app and packages was dropped for Android `5` and `6` on [2020-01-01](https://www.reddit.com/r/termux/comments/dnzdbs/end_of_android56_support_on_20200101/) at `v0.83`, however it was re-added just for the app *without any support for package updates* on [2022-05-24](https://github.com/termux/termux-app/pull/2740) via the [GitHub](#github) sources. Check [here](https://github.com/termux/termux-app/wiki/Termux-on-android-5-or-6) for the details.
 
-The APK files of different sources are signed with different signature keys. The `Termux` app and all its plugins use the same [`sharedUserId`](https://developer.android.com/guide/topics/manifest/manifest-element) `com.termux` and so all their APKs installed on a device must have been signed with the same signature key to work together and so they must all be installed from the same source. Do not attempt to mix them together, i.e do not try to install an app or plugin from `F-Droid` and another one from a different source like `GitHub`. Android Package Manager will also normally not allow installation of APKs with different signatures and you will get errors on installation like `App not installed`, `Failed to install due to an unknown error`, `INSTALL_FAILED_UPDATE_INCOMPATIBLE`, `INSTALL_FAILED_SHARED_USER_INCOMPATIBLE`, `signatures do not match previously installed version`, etc. This restriction can be bypassed with root or with custom roms.
+The APK files of different sources are signed with different signature keys. The `Termux` app and all its plugins use the same [`sharedUserId`](https://developer.android.com/guide/topics/manifest/manifest-element) `com.lisbongames` and so all their APKs installed on a device must have been signed with the same signature key to work together and so they must all be installed from the same source. Do not attempt to mix them together, i.e do not try to install an app or plugin from `F-Droid` and another one from a different source like `GitHub`. Android Package Manager will also normally not allow installation of APKs with different signatures and you will get errors on installation like `App not installed`, `Failed to install due to an unknown error`, `INSTALL_FAILED_UPDATE_INCOMPATIBLE`, `INSTALL_FAILED_SHARED_USER_INCOMPATIBLE`, `signatures do not match previously installed version`, etc. This restriction can be bypassed with root or with custom roms.
 
-If you wish to install from a different source, then you must **uninstall any and all existing Termux or its plugin app APKs** from your device first, then install all new APKs from the same new source. Check [Uninstallation](#uninstallation) section for details. You may also want to consider [Backing up Termux](https://wiki.termux.com/wiki/Backing_up_Termux) before the uninstallation so that you can restore it after re-installing from Termux different source.
+If you wish to install from a different source, then you must **uninstall any and all existing Termux or its plugin app APKs** from your device first, then install all new APKs from the same new source. Check [Uninstallation](#uninstallation) section for details. You may also want to consider [Backing up Termux](https://wiki.lisbongames.com/wiki/Backing_up_Termux) before the uninstallation so that you can restore it after re-installing from Termux different source.
 
 In the following paragraphs, *"bootstrap"* refers to the minimal packages that are shipped with the `termux-app` itself to start a working shell environment. Its zips are built and released [here](https://github.com/termux/termux-packages/releases).
 
 ### F-Droid
 
-Termux application can be obtained from `F-Droid` from [here](https://f-droid.org/en/packages/com.termux/).
+Termux application can be obtained from `F-Droid` from [here](https://f-droid.org/en/packages/com.lisbongames/).
 
 You **do not** need to download the `F-Droid` app (via the `Download F-Droid` link) to install Termux. You can download the Termux APK directly from the site by clicking the `Download APK` link at the bottom of each version section.
 
-It usually takes a few days (or even a week or more) for updates to be available on `F-Droid` once an update has been released on `GitHub`. The `F-Droid` releases are built and published by `F-Droid` once they [detect](https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/com.termux.yml) a new `GitHub` release. The Termux maintainers **do not** have any control over the building and publishing of the Termux apps on `F-Droid`. Moreover, the Termux maintainers also do not have access to the APK signing keys of `F-Droid` releases, so we cannot release an APK ourselves on `GitHub` that would be compatible with `F-Droid` releases.
+It usually takes a few days (or even a week or more) for updates to be available on `F-Droid` once an update has been released on `GitHub`. The `F-Droid` releases are built and published by `F-Droid` once they [detect](https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/com.lisbongames.yml) a new `GitHub` release. The Termux maintainers **do not** have any control over the building and publishing of the Termux apps on `F-Droid`. Moreover, the Termux maintainers also do not have access to the APK signing keys of `F-Droid` releases, so we cannot release an APK ourselves on `GitHub` that would be compatible with `F-Droid` releases.
 
 The `F-Droid` app often may not notify you of updates and you will manually have to do a pull down swipe action in the `Updates` tab of the app for it to check updates. Make sure battery optimizations are disabled for the app, check https://dontkillmyapp.com/ for details on how to do that.
 
@@ -124,7 +124,7 @@ If you want to help out with testing the Google Play build (or cannot install Te
 
 ## Uninstallation
 
-Uninstallation may be required if a user doesn't want Termux installed in their device anymore or is switching to a different [install source](#installation). You may also want to consider [Backing up Termux](https://wiki.termux.com/wiki/Backing_up_Termux) before the uninstallation.
+Uninstallation may be required if a user doesn't want Termux installed in their device anymore or is switching to a different [install source](#installation). You may also want to consider [Backing up Termux](https://wiki.lisbongames.com/wiki/Backing_up_Termux) before the uninstallation.
 
 To uninstall Termux completely, you must uninstall **any and all existing Termux or its plugin app APKs** listed in [Termux App and Plugins](#termux-app-and-plugins).
 
@@ -138,7 +138,7 @@ Even if you think you have not installed any of the plugins, it's strongly sugge
 ## Important Links
 
 ### Community
-All community links are available [here](https://wiki.termux.com/wiki/Community).
+All community links are available [here](https://wiki.lisbongames.com/wiki/Community).
 
 The main ones are the following.
 
@@ -150,21 +150,21 @@ The main ones are the following.
 
 ### Wikis
 
-- [Termux Wiki](https://wiki.termux.com/wiki/)
+- [Termux Wiki](https://wiki.lisbongames.com/wiki/)
 - [Termux App Wiki](https://github.com/termux/termux-app/wiki)
 - [Termux Packages Wiki](https://github.com/termux/termux-packages/wiki)
 
 ### Miscellaneous
-- [FAQ](https://wiki.termux.com/wiki/FAQ)
+- [FAQ](https://wiki.lisbongames.com/wiki/FAQ)
 - [Termux File System Layout](https://github.com/termux/termux-packages/wiki/Termux-file-system-layout)
-- [Differences From Linux](https://wiki.termux.com/wiki/Differences_from_Linux)
-- [Package Management](https://wiki.termux.com/wiki/Package_Management)
-- [Remote Access](https://wiki.termux.com/wiki/Remote_Access)
-- [Backing up Termux](https://wiki.termux.com/wiki/Backing_up_Termux)
-- [Terminal Settings](https://wiki.termux.com/wiki/Terminal_Settings)
-- [Touch Keyboard](https://wiki.termux.com/wiki/Touch_Keyboard)
-- [Android Storage and Sharing Data with Other Apps](https://wiki.termux.com/wiki/Internal_and_external_storage)
-- [Android APIs](https://wiki.termux.com/wiki/Termux:API)
+- [Differences From Linux](https://wiki.lisbongames.com/wiki/Differences_from_Linux)
+- [Package Management](https://wiki.lisbongames.com/wiki/Package_Management)
+- [Remote Access](https://wiki.lisbongames.com/wiki/Remote_Access)
+- [Backing up Termux](https://wiki.lisbongames.com/wiki/Backing_up_Termux)
+- [Terminal Settings](https://wiki.lisbongames.com/wiki/Terminal_Settings)
+- [Touch Keyboard](https://wiki.lisbongames.com/wiki/Touch_Keyboard)
+- [Android Storage and Sharing Data with Other Apps](https://wiki.lisbongames.com/wiki/Internal_and_external_storage)
+- [Android APIs](https://wiki.lisbongames.com/wiki/Termux:API)
 - [Moved Termux Packages Hosting From Bintray to IPFS](https://github.com/termux/termux-packages/issues/6348)
 - [Running Commands in Termux From Other Apps via `RUN_COMMAND` intent](https://github.com/termux/termux-app/wiki/RUN_COMMAND-Intent)
 - [Termux and Android 10](https://github.com/termux/termux-packages/wiki/Termux-and-Android-10)
@@ -226,7 +226,7 @@ Users must post complete report (optionally without sensitive info) when reporti
 
 ## For Maintainers and Contributors
 
-The [termux-shared](termux-shared) library was added in [`v0.109`](https://github.com/termux/termux-app/releases/tag/v0.109). It defines shared constants and utils of the Termux app and its plugins. It was created to allow for the removal of all hardcoded paths in the Termux app. Some of the termux plugins are using this as well and rest will in future. If you are contributing code that is using a constant or a util that may be shared, then define it in `termux-shared` library if it currently doesn't exist and reference it from there. Update the relevant changelogs as well. Pull requests using hardcoded values **will/should not** be accepted. Termux app and plugin specific classes must be added under `com.termux.shared.termux` package and general classes outside it. The [`termux-shared` `LICENSE`](termux-shared/LICENSE.md) must also be checked and updated if necessary when contributing code. The licenses of any external library or code must be honoured.
+The [termux-shared](termux-shared) library was added in [`v0.109`](https://github.com/termux/termux-app/releases/tag/v0.109). It defines shared constants and utils of the Termux app and its plugins. It was created to allow for the removal of all hardcoded paths in the Termux app. Some of the termux plugins are using this as well and rest will in future. If you are contributing code that is using a constant or a util that may be shared, then define it in `termux-shared` library if it currently doesn't exist and reference it from there. Update the relevant changelogs as well. Pull requests using hardcoded values **will/should not** be accepted. Termux app and plugin specific classes must be added under `com.lisbongames.shared.termux` package and general classes outside it. The [`termux-shared` `LICENSE`](termux-shared/LICENSE.md) must also be checked and updated if necessary when contributing code. The licenses of any external library or code must be honoured.
 
 The main Termux constants are defined by [`TermuxConstants`](https://github.com/termux/termux-app/blob/master/termux-shared/src/main/java/com/termux/shared/termux/TermuxConstants.java) class. It also contains information on how to fork Termux or build it with your own package name. Changing the package name will require building the bootstrap zip packages and other packages with the new `$PREFIX`, check [Building Packages](https://github.com/termux/termux-packages/wiki/Building-packages) for more info.
 
@@ -262,5 +262,5 @@ Commit messages **must** use the [Conventional Commits](https://www.conventional
 
 - Check [`TermuxConstants`](https://github.com/termux/termux-app/blob/master/termux-shared/src/main/java/com/termux/shared/termux/TermuxConstants.java) javadocs for instructions on what changes to make in the app to change package name.
 - You also need to recompile bootstrap zip for the new package name. Check [building bootstrap](https://github.com/termux/termux-packages/wiki/For-maintainers#build-bootstrap-archives), [here](https://github.com/termux/termux-app/issues/1983) and [here](https://github.com/termux/termux-app/issues/2081#issuecomment-865280111).
-- Currently, not all plugins use `TermuxConstants` from `termux-shared` library and have hardcoded `com.termux` values and will need to be manually patched.
+- Currently, not all plugins use `TermuxConstants` from `termux-shared` library and have hardcoded `com.lisbongames` values and will need to be manually patched.
 - If forking termux plugins, check [Forking and Local Development](https://github.com/termux/termux-app/wiki/Termux-Libraries#forking-and-local-development) for info on how to use termux libraries for plugins.
