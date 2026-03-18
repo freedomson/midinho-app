@@ -3,12 +3,15 @@ package com.termux.app.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Message;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -80,13 +83,41 @@ public final class MidinhoActivity extends AppCompatActivity {
         WebView webView = new WebView(this);
 
         WebSettings settings = webView.getSettings();
+        settings.setSupportMultipleWindows(false);
+        settings.setJavaScriptCanOpenWindowsAutomatically(false);
+        settings.setDomStorageEnabled(true);
         settings.setJavaScriptEnabled(true);
         webView.setVerticalScrollBarEnabled(true);
         webView.setHorizontalScrollBarEnabled(true);
         webView.setFocusable(true);
         webView.setFocusableInTouchMode(true);
         webView.requestFocus(View.FOCUS_DOWN);
-        webView.setWebChromeClient(new WebChromeClient());
+
+
+        // ✅ Keep navigation inside this WebView
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                // Returning false lets WebView load the URL itself [4](https://github.com/janverhoeckx/nginx-reverse-proxy-example)
+                return false;
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
+
+        // ✅ Deny creation of new windows explicitly
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
+                // Return false = do not create a new window [2](https://access.redhat.com/solutions/6965691)
+                return false;
+            }
+        });
+
+
         webView.setOnTouchListener((v, event) -> {
             if (!v.hasFocus()) {
                 v.requestFocus();
